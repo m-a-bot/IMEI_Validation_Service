@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+
+  imei-validation-service:
+    container_name: imei-validation-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    user: "${UID}:${GID}"
+    ports:
+      - "${SERVICE_EXTERNAL_PORT}:6000"
+    networks:
+      - imei-validation_network
+    restart: always
+    volumes:
+      - .:/app:delegated  # <--- For local dev
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+networks:
+  imei-validation_network:
+    name: "imei-validation_network"
