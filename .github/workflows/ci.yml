@@ -31,4 +31,3 @@ jobs:
   
     - name: Run black
       run: poetry run black app --check
-  

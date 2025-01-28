@@ -1,4 +1,3 @@
-from app.common.logging import log_decorator
 from app.interfaces.access_control_service_interface import (
     IAccessControlService,
 )
@@ -15,6 +14,5 @@ class AccessControlServiceStub(IAccessControlService):
     def url(self):
         return self.__url
 
-    @log_decorator
     async def verify_token(self, token: str):
         return True
