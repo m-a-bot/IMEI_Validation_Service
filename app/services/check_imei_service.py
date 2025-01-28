@@ -3,7 +3,6 @@ from typing import Any
 from fastapi import HTTPException
 from typing_extensions import Unpack
 
-from app.common.logging import log_decorator
 from app.config import settings
 from app.integrations.factories import IMEICheckAPIBuilder
 from app.schemes.pyd import IMEICheck
@@ -18,7 +17,6 @@ class CheckIMEIService:
     def __str__(self) -> str:
         return "Check IMEI Service"
 
-    @log_decorator
     async def check(self, *args: Unpack[Any], **kwargs: Any):
         try:
             data = await self.imei_api.check(*args, **kwargs)

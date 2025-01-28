@@ -5,12 +5,8 @@ from typing import Any, Optional
 import aiohttp
 from aiohttp import ClientError, ClientResponseError
 from fastapi import HTTPException
-from loguru import logger
-
-from app.common.logging import log_decorator
 
 
-@log_decorator
 async def send_request(
     endpoint: str,
     method: str,
@@ -39,7 +35,7 @@ async def send_request(
 
                 return await response.json()
     except ClientResponseError as exc:
-        logger.error(
+        logging.error(
             f"Error during {method} request to {endpoint}, status code: {exc.status}, message: {exc.message}",
             exc_info=exc,
         )

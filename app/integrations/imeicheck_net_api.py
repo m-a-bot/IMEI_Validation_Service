@@ -1,7 +1,6 @@
 from typing import Any
 from urllib.parse import urljoin
 
-from app.common.logging import log_decorator
 from app.config import settings
 from app.integrations.send_request import send_request
 from app.interfaces.imei_check_api_interface import IBaseIMEICheckAPI
@@ -25,7 +24,6 @@ class IMEICheckNetAPI(IBaseIMEICheckAPI):
     def token(self) -> str:
         return self.__token
 
-    @log_decorator
     async def check(self, imei_check: IMEICheck) -> dict[Any, Any]:
         url = urljoin(self.url, settings.IMEI_CHECKS_URL)
 
