@@ -1,4 +1,6 @@
-from http.client import HTTPException
+import logging
+
+from fastapi import HTTPException
 
 from app.config import settings
 from app.integrations.factories import AccessControlServiceBuilder
@@ -12,5 +14,11 @@ async def user_wrapper(user_id: int, token: str):
 
         await access_control_service.verify_token(user_id, token)
 
+    except HTTPException as ex:
+        raise ex
+
     except Exception as ex:
-        raise HTTPException(400, "Bad request")
+
+        logging.error(f"Unexpected error in user_wrapper: {ex}")
+
+        raise HTTPException(500, "Internal Server Error") from ex

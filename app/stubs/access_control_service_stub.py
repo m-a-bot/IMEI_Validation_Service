@@ -8,11 +8,11 @@ class AccessControlServiceStub(IAccessControlService):
         self.__url = service_url
 
     def __str__(self):
-        return "Auth Service Stub"
+        return "Access Control Service Stub"
 
     @property
     def url(self):
         return self.__url
 
     async def verify_token(self, token: str):
-        return True
+        return {"valid": True}

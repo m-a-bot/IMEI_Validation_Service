@@ -9,7 +9,7 @@ class AccessControlService(IAccessControlService):
         self.__url = service_url
 
     def __str__(self):
-        return "Auth Service"
+        return "Access Control Service"
 
     @property
     def url(self):
