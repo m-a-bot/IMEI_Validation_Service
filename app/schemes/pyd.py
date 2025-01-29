@@ -12,13 +12,13 @@ class IMEICheck(BaseModel):
     @model_validator(mode="after")
     def check_deviceId_is_valid(self) -> Self:
         if not is_valid(self.deviceId):
-            raise ValidationError("deviceId is not valid")
+            raise ValueError("deviceId is not valid")
         return self
 
     class Config:
         json_schema_extra = {
             "example": {
-                "deviceId": "123456789012345",
+                "deviceId": "356735111052198",
                 "serviceId": 14,
             }
         }

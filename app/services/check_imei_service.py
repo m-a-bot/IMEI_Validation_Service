@@ -19,7 +19,8 @@ class CheckIMEIService:
 
     async def check(self, *args: Unpack[Any], **kwargs: Any):
         try:
-            data = await self.imei_api.check(*args, **kwargs)
-            return data
+            return await self.imei_api.check(*args, **kwargs)
+        except HTTPException as exc:
+            raise exc
         except Exception as exc:
-            raise HTTPException(404, exc)
+            raise HTTPException(404, "Bad request") from exc

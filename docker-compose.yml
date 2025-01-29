@@ -12,7 +12,7 @@ services:
     ports:
       - "${SERVICE_EXTERNAL_PORT}:6000"
     networks:
-      - imei-validation_network
+      - t_bot_network
     restart: always
     volumes:
       - .:/app:delegated  # <--- For local dev
@@ -20,5 +20,7 @@ services:
 
 
 networks:
-  imei-validation_network:
-    name: "imei-validation_network"
+  t_bot_network:
+    external: true
+#  imei-validation_network:
+#    name: "imei-validation_network"

@@ -31,10 +31,10 @@ class IMEICheckNetAPI(IBaseIMEICheckAPI):
 
         headers = {
             "Authorization": f"Bearer {self.token}",
-            "Content-Type": "application/json",
             "Accept-Language": "en",
+            "Content-Type": "application/json",
         }
         imei_verification_info = await send_request(
-            endpoint=url, method="POST", body_params=body, headers=headers
+            endpoint=url, method="POST", data=body, headers=headers
         )
         return dict(imei_verification_info)

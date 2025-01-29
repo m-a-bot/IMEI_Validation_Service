@@ -6,7 +6,7 @@ from app.schemes.pyd import IMEICheck
 from app.services.check_imei_service import CheckIMEIService
 
 check_imei_router = APIRouter(
-    tags=["check_imei_router"], dependencies=[Depends(user_wrapper)]
+    tags=["check_imei_router"],
 )
 
 
@@ -18,7 +18,9 @@ async def check_imei(
     token: str = Query(...),
     user_id: int = Query(...),
 ):
+    await user_wrapper(user_id, token)
+
     """Check imei"""
     return await CheckIMEIService(imei_api_name=settings.IMEI_API_NAME).check(
-        imei_check
+        imei_check=imei_check
     )
